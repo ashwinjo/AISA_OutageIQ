@@ -1,0 +1,1828 @@
+{
+  "name": "OutageIQ - COE Documentation Creator",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "##  Step 2: Call down detector tool to check for Spike Details\n\n",
+        "height": 400.66236051402166,
+        "width": 573.001793293766,
+        "color": 4
+      },
+      "id": "56a32611-cffe-4ece-a6b5-e0223c486220",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -520
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Get the Down Detector Spikes",
+        "url": "http://0.0.0.0:8089/down_detector_spike",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "start_time",
+              "valueProvider": "fieldValue",
+              "value": "start_time"
+            },
+            {
+              "name": "company",
+              "valueProvider": "fieldValue",
+              "value": "ComcastINC"
+            }
+          ]
+        }
+      },
+      "id": "edb1af23-e403-4934-851b-2c02f3f6d01d",
+      "name": "DownDetector",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "4f109e4d-6389-40df-8e64-4550c9c018b3",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -300
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "5af7f772-af59-465d-ba4b-a934585f57f4",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        20,
+        180
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "http://0.0.0.0:8089/internal_tool",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "device_name"
+            },
+            {
+              "name": "start_time"
+            }
+          ]
+        }
+      },
+      "id": "392ee098-d1be-47df-bdff-74f631b44635",
+      "name": "InternalTool",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "##  Step 2a: Internal Tool Monitoring Fetcher\n",
+        "height": 369.8979822762142,
+        "width": 569.663077077184,
+        "color": 4
+      },
+      "id": "cf1b2e60-330f-4ddc-bd72-604dd5b9412c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "content": "##  Step 1: Invoke from Stremlit and fetch the Ticketing Information\n\n",
+        "height": 405.3576632893613,
+        "width": 880.1899591926256
+      },
+      "id": "fee212f4-651f-4c37-b8d1-8d9387cd53c9",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "cc57ca58-265b-499a-a5ba-31d8ee043979",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        20,
+        1280
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "e17781a9-77e7-4311-aa02-3a38b6a54339",
+      "name": "OpenAI Chat Model3",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        20,
+        780
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "##  Step 4: Fetch the log file names and download from Google Drive\n\n",
+        "height": 364.1003004769425,
+        "width": 990.9336130215246,
+        "color": 4
+      },
+      "id": "1e81fb90-334c-41ae-b37d-59a7503fc35a",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "content": "##  Step 3: Fetch the Snapshot file names and download from Google Drive\n\n\n",
+        "height": 457.49823648903003,
+        "width": 1041.2018262960603,
+        "color": 4
+      },
+      "id": "392b0257-b1e3-4035-9d74-7c3bd260edfa",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://0.0.0.0:8089/get_snapshot_location",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "device_name"
+            },
+            {
+              "name": "incident_id"
+            }
+          ]
+        }
+      },
+      "id": "e0ee9921-bcff-420d-976f-f4129f1b7121",
+      "name": "SnapshotLocationFetcher",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.message.content }}",
+          "mode": "url"
+        },
+        "options": {
+          "binaryPropertyName": "data",
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "664a1d2e-bd53-4935-8a29-90924675263d",
+      "name": "Google Drive1",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        640,
+        560
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "cYcDCz5fWvodvgkB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.message.content }}",
+          "mode": "url"
+        },
+        "options": {
+          "binaryPropertyName": "data",
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "118efef2-1365-452e-8255-0c048b344af2",
+      "name": "Google Drive2",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        640,
+        740
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "cYcDCz5fWvodvgkB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "http://0.0.0.0:8089/get_logs",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "device_name"
+            },
+            {
+              "name": "start_time"
+            }
+          ]
+        }
+      },
+      "id": "746730e9-1041-4ab5-85f9-9873c969f267",
+      "name": "Logs Fetcher Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.output }}",
+          "mode": "url"
+        },
+        "options": {
+          "binaryPropertyName": "data",
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "6fd852e8-add6-4929-ad5d-8597eeef47a3",
+      "name": "Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        320,
+        1120
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "cYcDCz5fWvodvgkB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.jsonString }}",
+        "options": {
+          "systemMessage": "=You are a helpful assistant\n\nAnalyze {{ $json.jsonString }} and figure out\n\n1. Which device is down\n2. When was the incident created\n3. Call the Intenal Tool Parser at your disposal. For the tool device_name is result of step 1 and start_time is incident creation time stamp.\n\n## Output Format\n\n\nInternal Tool Spike Detected at: <range_start_time>"
+        }
+      },
+      "id": "82e2ee75-5e03-49c1-95a8-6189fa632b7e",
+      "name": "Internal Tool  Parser Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        0,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.jsonString }}",
+        "options": {
+          "systemMessage": "=Role: You are a helpful assistant skilled in analyzing JSON data.\n\nTask: Given the JSON input {{ $json.jsonString }}, perform the following actions:\n\nIdentify the device that is down.\nExtract the ticket_id.\nUse the SnapshotLocationFetcher tool to retrieve the locations of the before and after snapshots.\nFOLLOW Output Format STRICTLY.\n\n## Output Format\n{ Before : <before_snapshot_url>  \n  After: <after_snapshot_url>  }\n"
+        }
+      },
+      "id": "83d28149-856f-454b-9fb3-19ce5a51b10e",
+      "name": "Device Snapshot Fetcher Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        0,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Step 5: Analyze Device Logs\n\n\n",
+        "height": 808.7144329927023,
+        "width": 1648.0475654535635,
+        "color": 5
+      },
+      "id": "8609d3ae-1aa2-4a18-b24b-a3214faba3a4",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -520
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are helpful assistant\nRule: Avoid using any single or double quotes in the analysis output\nAnalyze the following Cisco XR configuration files and show the difference\n\n{{ $json.stdout }}\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c4136bc-f7e8-4de6-9c84-ded8119a5bae",
+      "name": "Config Diff Checker",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1740,
+        -180
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Step 7: Combine all the log files for combined Diagnosis and upload to Google Drive\n\n\n\n\n",
+        "height": 1273.5259963754352,
+        "width": 1913.4356246307677,
+        "color": 6
+      },
+      "id": "06b3c062-58c6-4bf5-8ce1-b204b25b3542",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http://0.0.0.0:8089/get_ticket",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "incident_id",
+              "value": "={{ $json.query.incident_id }}"
+            },
+            {
+              "name": "role_as",
+              "value": "={{ $json.query.role }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3e00dc38-3b45-49bc-8a9f-d118f0784bcf",
+      "name": "Fetch Incident Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -780,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const jsonObject = items[0].json; // Get the JSON object from the input\nconst jsonString = JSON.stringify(jsonObject); // Convert to a string\nreturn [{ json: { jsonString } }];"
+      },
+      "id": "edadced0-bf72-48a0-95de-3bd86a713aea",
+      "name": "JSONtoStringConvertor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -520,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=echo \"{{ $json.output }}\" > content_down_detector.txt"
+      },
+      "id": "5912c17e-72c3-4c96-b5ff-8f286ddcb69a",
+      "name": "content_down_detector.txt",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        300,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=echo \"{{ $json.output }}\" > internal_tool_log.txt"
+      },
+      "id": "dabadae4-c892-4741-8849-c8a1cafa01fe",
+      "name": "internal_tool_log.txt",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        320,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/Users/ashwjosh/before_snapshot.txt",
+        "options": {}
+      },
+      "id": "e0a1f712-414a-4ff6-b80d-7b1c245cbdcf",
+      "name": "Write \"before_snapshot.txt\"",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        800,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/Users/ashwjosh/after_snapshot.txt",
+        "options": {}
+      },
+      "id": "91068c3e-0ded-40ae-80d1-319eb2e4d97c",
+      "name": "Write after_snapshot.txt",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        800,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/Users/ashwjosh/device_logs.txt",
+        "options": {}
+      },
+      "id": "d37948d9-5fb7-480e-9608-f620bfc083c8",
+      "name": "Write \"device_logs.txt\"",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        520,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "command": "cat \"/Users/ashwjosh/device_logs.txt\""
+      },
+      "id": "897d5dfa-dfb3-4a08-a225-9210134533b7",
+      "name": "Read \"device_logs.txt\"",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=echo \"{{ $json.message.content }}\" > /Users/ashwjosh/device_log_analysis.txt\nrm -f \"combined.txt\""
+      },
+      "id": "a515b8c7-9cf5-405f-b407-23292cbc1ee7",
+      "name": "Write \"device_log_analysis.txt\"",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        760,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "command": "cat /Users/ashwjosh/before_snapshot.txt"
+      },
+      "id": "a3702b48-68de-4d79-907b-0fb744d67d99",
+      "name": "Read before_snapshot.txt",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "command": "cat /Users/ashwjosh/after_snapshot.txt"
+      },
+      "id": "d55cfad8-ca8d-4e86-994a-f8e48ca4d75d",
+      "name": "Read after_snapshot.txt",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        -80
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a2021f6a-6f07-4852-a0ab-8bfadd08b3c5",
+      "name": "Merge Before and After Configs",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1540,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=echo '{{ $json.message.content }}' > drift_analysis.txt\n\n\n"
+      },
+      "id": "69a11391-ba97-4b2f-ad7a-feea1becb234",
+      "name": "Write \"drift_analysis.txt\"",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=for file in content_down_detector.txt internal_tool_log.txt device_log_analysis.txt drift_analysis.txt; do\n    if [ -f \"$file\" ]; then\n        echo \"===========$file===========\" >> combined.txt\n        cat \"$file\" >> /Users/ashwjosh/combined.txt\n    else\n        echo \"Warning: $file not found!\" >&2\n    fi\ndone\n"
+      },
+      "id": "5d8b8402-d654-4712-9ad7-a4ae33d42fcb",
+      "name": "Combine \"content_down_detector.txt internal_tool_log.txt device_log_analysis.txt drift_analysis.txt\"",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "command": "cat /Users/ashwjosh/combined.txt\n"
+      },
+      "id": "4ee48ae0-ff99-4ec2-b77f-084a01f5f288",
+      "name": "Read combined.txt1",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.message.content }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "0cd7f738-7420-4301-9d5c-3dfe9851a93c",
+      "name": "Response sent to Streamlit App",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1980,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.elevenlabs.io/v1/text-to-speech/pqHfZKP75CvOlQylNhV4",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpCustomAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "voice_id",
+              "value": "=pqHfZKP75CvOlQylNhV4"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.message.content }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ae3e604b-ac6c-4cbf-b2fe-beba900e200e",
+      "name": "Generate voice",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1940,
+        1100
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpCustomAuth": {
+          "id": "zjLbLaM28qEsV8aZ",
+          "name": "Custom Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are helpful assistant. \nAnalyze the following Cisco XR logs at  {{ $json.stdout }} and identify any critical errors:\nNo not use ant \", ' , ~ in the output response\n\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b22e6bd4-b040-4d0d-a628-823458b44e89",
+      "name": "Analyze Device Logs",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        740,
+        -200
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.jsonString }}",
+        "options": {
+          "systemMessage": "=You are a helpful assistant\n\nAnalyze {{ $json.jsonString }} and figure out\n\n1. Which device is down\n2. When was the incident created\n3. Call the Logs Fetcher Tool at your disposal. For the tool device_name is result of step 1 and start_time is incident creation time stamp.\n\nSHOW ONLY the output which would be a URL location of Logs\n\n## Output Format\n\nlogs_location"
+        }
+      },
+      "id": "f890d2e8-eeda-4cd0-b79f-0d3ede5280ef",
+      "name": "Device Logs Parser Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        0,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.jsonString }}",
+        "options": {
+          "systemMessage": "=You are an AI Expert.\nYou have down detector tool which will provide you service spike outage results.\nConvert the following nested JSON document {{ $json.jsonString }} into a readable plaintext format. DO NOT MAKE UP STUFF. RETAIN all the formation in JSON. Add in down detector results as well \n\n\n## Output Format\n\n# Content:  \n- Ticket ID  \n- Title  \n- Severity  \n- Status  \n- Assigned To  \n- Created At  \n\n# Chronological Timeline:  \n1. [Time] [User] - [Comment]  \n2. [Time] [User] - [Comment]  \n\n# Attached Images:  \n1. [File Name] - [URL]  \n2. [File Name] - [URL]  \n\n# Related Tickets:  \n1. [Ticket ID] - [Title] ([Status])  \n2. [Ticket ID] - [Title] ([Status])  \n\n# Down Detector Response:  \n[Status Note]"
+        }
+      },
+      "id": "040ecfd5-c99e-4184-87ff-643ac7a33b9b",
+      "name": "Down Detector Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        -20,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# Network Outage Report Generator\n\n## Purpose\nGenerate a comprehensive network outage report from raw incident data, focusing on clarity, technical accuracy, and actionable insights.\n\n## Input Format\nPaste your raw incident logs, ticket details, and device logs between the triple backticks:\n\n\"\"\"\n{{ $json.stdout }}\n\"\"\"\n## Output Format\n\n### Incident Title\n[A concise but descriptive title for the incident]\n\n### Incident Summary\n[A brief overview (2-3 paragraphs) of the incident, including:\n- Systems/services affected\n- Duration of outage\n- Number of affected users/customers\n- Business impact\n- Key resolution actions]\n\n### Root Cause Analysis\n[Technical explanation of what caused the incident, including:\n- Primary technical failure points\n- Contributing environmental factors\n- Cascading effects\n- Underlying vulnerabilities exposed]\n\n### Timeline\n[Chronological sequence of events in table format:\nAdd in the device_logs that have caused issue in the same timeline.\n\n| Time | Event |  Details |\n|------|-------|---------|\n| YYYY-MM-DD HH:MM | [Event description]| [Technical details] |\n\nInclude both ticket updates and relevant device log entries.]\n\n### Preventive Measures\n[Bulleted list of specific actions:\n- Immediate mitigations implemented\n- Short-term fixes applied\n- Long-term system improvements\n- Process/procedure changes recommended\n- Additional monitoring implemented]\n\n### Appendix\n[Include any relevant graphs, charts, or additional technical details that support the analysis]\n\nCOE Artificats at : https://drive.google.com/drive/u/0/home\n\n\n## Example Reference\nBased on the Dyn Cyberattack (October 21, 2016):\n\n### Incident Title\nDyn DNS Infrastructure DDoS Attack\n\n### Incident Summary\nA severe distributed denial-of-service (DDoS) attack targeted Dyn's DNS infrastructure, causing service disruptions for major online platforms including Twitter, Spotify, Reddit, and GitHub across Europe and North America. The outage affected approximately 1.2 million end-users and persisted for approximately 6 hours before full service restoration. The attack occurred in multiple waves, requiring adaptive mitigation strategies.\n\n### Root Cause Analysis\nThe incident resulted from a massive botnet of IoT devices infected with Mirai malware. The attackers leveraged approximately 100,000 compromised internet-connected devices to generate malicious traffic exceeding 1.2 Tbps. This overwhelmed Dyn's DNS resolution services by exploiting unsecured IoT devices with default credentials.\n\n### Timeline\n| Time | Event | Source | Details |\n|------|-------|--------|---------|\n| 2016-10-21 07:00 EDT | Initial detection | Network monitoring | Unusual traffic patterns detected on Eastern US DNS servers |\n| 2016-10-21 07:10 EDT | Attack escalation | Incident ticket #DYN-10212016-01 | Traffic volume exceeded 1.0 Tbps, triggering automatic alerts |\n| 2016-10-21 08:00 EDT | Mitigation initiated | Incident response team | Traffic filtering implemented at edge routers |\n| 2016-10-21 09:30 EDT | Second attack wave | Security logs | New attack pattern detected, bypassing initial filters |\n| 2016-10-21 11:00 EDT | Enhanced filtering | Engineering team | Advanced traffic analysis techniques deployed |\n| 2016-10-21 13:00 EDT | Service restoration | Status page update | Full DNS resolution capabilities restored |\n\n### Preventive Measures\n- Implemented enhanced IoT security protocols requiring device verification\n- Deployed DNS service diversification across multiple geographic regions\n- Enhanced real-time traffic anomaly detection capabilities\n- Established collaborative defense strategies with industry partners\n- Increased edge filtering capacity by 200%\n- Developed automated failover mechanisms for critical infrastructure\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7819c8bb-984c-44e3-b8c7-a7e611200bd6",
+      "name": "Report Generator",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1600,
+        680
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "ashwinjosh@gmail.com",
+        "subject": "Review the executive management report",
+        "message": "={{ $json.data }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        }
+      },
+      "id": "990faf26-067f-49dd-acb5-32e0cee6c3b2",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2180,
+        920
+      ],
+      "webhookId": "bc22dbb2-fd72-460d-9e72-1f6b60542bb5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1J1Nk0DQz6gsJCLD",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Role: You are great at creating Network Outage Reports.\nNetwork Outage Combined text blurb: {{ $json.stdout }}\n\nPlease help me create a comprehensive yet concise summary of our recent network outage for executive management. The summary should include:\n1. A precise timeline of the outage (when it began, key milestones, when service was restored)\n2. The technical root cause of the issue\n3. Quantifiable business impact (number of affected customers, estimated revenue impact, SLA violations)\n4. Actions taken to resolve the issue\n5. Preventative measures implemented or proposed to avoid similar incidents\n6. Key performance metrics during the resolution process (mean time to detect, respond, and recover)\n7. Lessons learned and actionable recommendations\n\nPlease format this as a professional executive summary of approximately 500 words that would be appropriate for C-suite executives.\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d8addaf4-9ca2-4711-9a03-968d7c25adb0",
+      "name": "Report Management",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1620,
+        920
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "562ec689-9972-41c9-8dfc-b299f92ff84b",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "d8d22e0f-2711-4fce-8797-a857a7df14bd",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2340,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are helpful assistant. \nYou need to follow following steps:\n1. Read input string formatted json  {{ $json.output }} and fetch before snapshot URL\n2. There should NOT BE ANY SPACES in url's\n\n## Output Format\nbefore snapshot URL\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b41a3dee-12ca-4321-aed0-17e3a7a6bab9",
+      "name": "Get the Before Snapshot URL",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        340,
+        560
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are helpful assistant. \nYou need to follow following steps:\n1. Read input string formatted json  {{ $json.output }} and fetch after snapshot URL\n2. There should NOT BE ANY SPACES in url's\n\n## Output Format\nafter snapshot URL\n",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a0fe896f-55f2-41d6-bc19-1035651eff28",
+      "name": "Get the After Snapshot URL",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        340,
+        740
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.message.content }}",
+        "options": {}
+      },
+      "id": "93f2f901-1c36-4c5a-b17a-d5733ad2135d",
+      "name": "Markdown",
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5f8ee376-dc01-457b-841f-03b36ba8a7bc",
+      "name": "SerpAPI",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        820
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "HjwXENywAqJL81ci",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e74d923c-c6a5-4bd0-b3fb-2d0e8511bd87",
+      "name": "SerpAPI1",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        1100
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "HjwXENywAqJL81ci",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4e6830a4-b3cc-401b-8149-0c5948d8de3c",
+      "name": "SerpAPI2",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        1380
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "HjwXENywAqJL81ci",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "options": {}
+      },
+      "id": "e89f3371-4164-4359-98a6-116d4510c585",
+      "name": "OpenAI Chat Model4",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        1480
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# AI Solutions Architect @ *ELVR* by Duc Haba and Tony Merlo",
+        "height": 100.76866500924551,
+        "width": 1235.6627517995582,
+        "color": 6
+      },
+      "id": "5835cfcf-601c-4be8-bed7-4bc4076e7ccf",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -800
+      ]
+    },
+    {
+      "parameters": {
+        "text": "=There was a recent outage in your area. Listen to the audio below for details. Apologies for the inconvenience caused.",
+        "additionalFields": {}
+      },
+      "id": "1ff5d062-5d85-4da0-9fac-6853c09e0209",
+      "name": "CreateTweet",
+      "type": "n8n-nodes-base.twitter",
+      "typeVersion": 2,
+      "position": [
+        2320,
+        1340
+      ],
+      "credentials": {
+        "twitterOAuth2Api": {
+          "id": "s01DlafxTiOSOtCW",
+          "name": "X account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "There was a recent outage in your area. Listen to the audio below for details. Apologies for the inconvenience caused.",
+        "options": {},
+        "files": {
+          "values": [
+            {}
+          ]
+        }
+      },
+      "id": "bd11d8a4-b62f-4a4e-bfda-49671aff13a5",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        1100
+      ],
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "yiSGz09F2FxJh13p",
+          "name": "Discord Webhook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/Users/ashwjosh/phonecall.mp3",
+        "options": {}
+      },
+      "id": "2e8b8d51-7e2f-49ec-b585-444719e3b3cc",
+      "name": "Read/Write Files from Disk",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/Users/ashwjosh/phonecall.mp3",
+        "options": {}
+      },
+      "id": "d1add01f-7b40-43d0-844d-568d9da44250",
+      "name": "Read/Write Files from Disk1",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        1100
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate a 150 characters tweet based on the following message: \"{{ $json.message.content }}\".  \n\n**Guidelines:**  \n\n- **DO NOT exceed 150 characters.**  \n- **NO emojis, NO hashtags.**  \n\nEnsure the response is structured like a proper tweet and does not go beyond the word limit. If needed, summarize while maintaining key information.\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a 2 sentences tweet creator. "
+            }
+          ]
+        }
+      },
+      "id": "e4029773-4c5a-46cb-9efa-6ab698b5e31b",
+      "name": "Tweet Creation",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1960,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4",
+          "mode": "list",
+          "cachedResultName": "GPT-4"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Write a 50-word social media post addressing a recent network outage incident. The post should be written as if addressing customers directly, explaining the impact of the outage and the steps taken to resolve it. \n\nInclude the following elements:\n\nIntroduction: Briefly inform customers about the network outage.\nImpact: Describe the impact of the outage on customers, focusing on the disruption caused.\nResolution Steps: Outline the steps taken to resolve the issue, including identification, isolation, repair, testing, and monitoring.\nCompensation: Mention that affected customers will receive 15 days of free internet as compensation.\nCustomer Support: Encourage customers to contact customer support for any further assistance, providing a toll-free number (1800-DATA).\nHashtags: Add relevant hashtags to the post.\nEnsure the tone is empathetic, reassuring, and appreciative of the customers' patience and understanding. Use the following hashtags: #NetworkOutage, #CustomerSupport, #FreeInternet, #ServiceRestored, #TechUpdate, #StayConnected.",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cde3436f-dc91-4ab7-8b6f-0f4f1cb1cb77",
+      "name": "Report Social Media",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.6,
+      "position": [
+        1600,
+        1220
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "abPvH6vDLHvVqUBK",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "ashwinjosh@gmail.com",
+        "subject": "Outage Report ",
+        "message": "={{ $('Markdown').item.json.data }}",
+        "options": {}
+      },
+      "id": "7dca222d-cbd8-45d1-9f3a-bfd9317b8c3c",
+      "name": "Gmail1",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2560,
+        900
+      ],
+      "webhookId": "02949680-e273-4bea-b72e-ff02b5b690d3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1J1Nk0DQz6gsJCLD",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "outageiq",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "49408dce-0665-4854-891b-af37ecbaa2cf",
+      "name": "Webhook Called from Streamlit",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -960,
+        360
+      ],
+      "webhookId": "154b8d0b-70e2-472e-92b4-85ebee8936b2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Down Detector Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DownDetector": {
+      "ai_tool": [
+        [
+          {
+            "node": "Down Detector Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Internal Tool  Parser Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "InternalTool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Internal Tool  Parser Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Device Logs Parser Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Device Snapshot Fetcher Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SnapshotLocationFetcher": {
+      "ai_tool": [
+        [
+          {
+            "node": "Device Snapshot Fetcher Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive1": {
+      "main": [
+        [
+          {
+            "node": "Write \"before_snapshot.txt\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive2": {
+      "main": [
+        [
+          {
+            "node": "Write after_snapshot.txt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logs Fetcher Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Device Logs Parser Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Write \"device_logs.txt\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Internal Tool  Parser Agent": {
+      "main": [
+        [
+          {
+            "node": "internal_tool_log.txt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Device Snapshot Fetcher Agent": {
+      "main": [
+        [
+          {
+            "node": "Get the Before Snapshot URL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get the After Snapshot URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config Diff Checker": {
+      "main": [
+        [
+          {
+            "node": "Write \"drift_analysis.txt\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Incident Details": {
+      "main": [
+        [
+          {
+            "node": "JSONtoStringConvertor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSONtoStringConvertor": {
+      "main": [
+        [
+          {
+            "node": "Down Detector Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Internal Tool  Parser Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Device Snapshot Fetcher Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Device Logs Parser Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write \"device_logs.txt\"": {
+      "main": [
+        [
+          {
+            "node": "Read \"device_logs.txt\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read \"device_logs.txt\"": {
+      "main": [
+        [
+          {
+            "node": "Analyze Device Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write \"device_log_analysis.txt\"": {
+      "main": [
+        [
+          {
+            "node": "Read before_snapshot.txt",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read after_snapshot.txt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read before_snapshot.txt": {
+      "main": [
+        [
+          {
+            "node": "Merge Before and After Configs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read after_snapshot.txt": {
+      "main": [
+        [
+          {
+            "node": "Merge Before and After Configs",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Before and After Configs": {
+      "main": [
+        [
+          {
+            "node": "Config Diff Checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write \"drift_analysis.txt\"": {
+      "main": [
+        [
+          {
+            "node": "Combine \"content_down_detector.txt internal_tool_log.txt device_log_analysis.txt drift_analysis.txt\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read combined.txt1": {
+      "main": [
+        [
+          {
+            "node": "Report Generator",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Report Social Media",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Report Management",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Device Logs": {
+      "main": [
+        [
+          {
+            "node": "Write \"device_log_analysis.txt\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Device Logs Parser Agent": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Down Detector Agent": {
+      "main": [
+        [
+          {
+            "node": "content_down_detector.txt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Report Generator": {
+      "main": [
+        [
+          {
+            "node": "Response sent to Streamlit App",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Report Management": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get the Before Snapshot URL": {
+      "main": [
+        [
+          {
+            "node": "Google Drive1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get the After Snapshot URL": {
+      "main": [
+        [
+          {
+            "node": "Google Drive2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "Report Generator",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Report Management",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Report Social Media",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Tweet Creation",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk1": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Report Social Media": {
+      "main": [
+        [
+          {
+            "node": "Tweet Creation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Generate voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine \"content_down_detector.txt internal_tool_log.txt device_log_analysis.txt drift_analysis.txt\"": {
+      "main": [
+        [
+          {
+            "node": "Read combined.txt1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Called from Streamlit": {
+      "main": [
+        [
+          {
+            "node": "Fetch Incident Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate voice": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tweet Creation": {
+      "main": [
+        [
+          {
+            "node": "CreateTweet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5506c2f7-7330-4231-b68f-3b62a82cce7d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f8e30cb47c27e297f44d427eff1e4d164b49516741030dd42c1aca61a94c5373"
+  },
+  "id": "BvxA0mc9dbDyz0CS",
+  "tags": [
+    {
+      "createdAt": "2025-02-22T04:25:15.074Z",
+      "updatedAt": "2025-02-22T04:25:15.074Z",
+      "id": "RcnmHbKWshk5XagX",
+      "name": "AISA Project"
+    }
+  ]
+}
